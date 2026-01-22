@@ -33,27 +33,28 @@ class Command(BaseCommand):
         # Create Users (Superheroes)
         self.stdout.write('Creating superhero users...')
         marvel_heroes = [
-            {'name': 'Iron Man', 'email': 'tony.stark@marvel.com', 'password': 'iamironman123'},
-            {'name': 'Captain America', 'email': 'steve.rogers@marvel.com', 'password': 'captainamerica123'},
-            {'name': 'Thor', 'email': 'thor.odinson@marvel.com', 'password': 'godofthunder123'},
-            {'name': 'Black Widow', 'email': 'natasha.romanoff@marvel.com', 'password': 'blackwidow123'},
-            {'name': 'Hulk', 'email': 'bruce.banner@marvel.com', 'password': 'hulksmash123'},
-            {'name': 'Spider-Man', 'email': 'peter.parker@marvel.com', 'password': 'spiderman123'},
+            {'name': 'Iron Man', 'username': 'ironman', 'email': 'tony.stark@marvel.com', 'password': 'iamironman123'},
+            {'name': 'Captain America', 'username': 'captainamerica', 'email': 'steve.rogers@marvel.com', 'password': 'captainamerica123'},
+            {'name': 'Thor', 'username': 'thor', 'email': 'thor.odinson@marvel.com', 'password': 'godofthunder123'},
+            {'name': 'Black Widow', 'username': 'blackwidow', 'email': 'natasha.romanoff@marvel.com', 'password': 'blackwidow123'},
+            {'name': 'Hulk', 'username': 'hulk', 'email': 'bruce.banner@marvel.com', 'password': 'hulksmash123'},
+            {'name': 'Spider-Man', 'username': 'spiderman', 'email': 'peter.parker@marvel.com', 'password': 'spiderman123'},
         ]
         
         dc_heroes = [
-            {'name': 'Superman', 'email': 'clark.kent@dc.com', 'password': 'manofsteel123'},
-            {'name': 'Batman', 'email': 'bruce.wayne@dc.com', 'password': 'darkknight123'},
-            {'name': 'Wonder Woman', 'email': 'diana.prince@dc.com', 'password': 'wonderwoman123'},
-            {'name': 'The Flash', 'email': 'barry.allen@dc.com', 'password': 'theflash123'},
-            {'name': 'Aquaman', 'email': 'arthur.curry@dc.com', 'password': 'aquaman123'},
-            {'name': 'Green Lantern', 'email': 'hal.jordan@dc.com', 'password': 'greenlantern123'},
+            {'name': 'Superman', 'username': 'superman', 'email': 'clark.kent@dc.com', 'password': 'manofsteel123'},
+            {'name': 'Batman', 'username': 'batman', 'email': 'bruce.wayne@dc.com', 'password': 'darkknight123'},
+            {'name': 'Wonder Woman', 'username': 'wonderwoman', 'email': 'diana.prince@dc.com', 'password': 'wonderwoman123'},
+            {'name': 'The Flash', 'username': 'theflash', 'email': 'barry.allen@dc.com', 'password': 'theflash123'},
+            {'name': 'Aquaman', 'username': 'aquaman', 'email': 'arthur.curry@dc.com', 'password': 'aquaman123'},
+            {'name': 'Green Lantern', 'username': 'greenlantern', 'email': 'hal.jordan@dc.com', 'password': 'greenlantern123'},
         ]
         
         marvel_users = []
         for hero in marvel_heroes:
             user = User.objects.create(
                 name=hero['name'],
+                username=hero['username'],
                 email=hero['email'],
                 password=hero['password'],
                 team_id=str(team_marvel.id)
@@ -64,6 +65,7 @@ class Command(BaseCommand):
         for hero in dc_heroes:
             user = User.objects.create(
                 name=hero['name'],
+                username=hero['username'],
                 email=hero['email'],
                 password=hero['password'],
                 team_id=str(team_dc.id)
