@@ -31,35 +31,69 @@ function Activities() {
       });
   }, []);
 
-  if (loading) return <div className="container mt-4">Loading activities...</div>;
-  if (error) return <div className="container mt-4 alert alert-danger">Error: {error}</div>;
+  if (loading) return (
+    <div className="container mt-4">
+      <div className="loading-spinner">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <p className="mt-2">Loading activities...</p>
+      </div>
+    </div>
+  );
+  
+  if (error) return (
+    <div className="container mt-4">
+      <div className="alert alert-danger" role="alert">
+        <h4 className="alert-heading">Error!</h4>
+        <p>{error}</p>
+      </div>
+    </div>
+  );
 
   return (
     <div className="container mt-4">
-      <h2>Activities</h2>
-      <div className="row">
-        {activities.length === 0 ? (
-          <div className="col-12">
-            <p>No activities found.</p>
-          </div>
-        ) : (
-          activities.map((activity, index) => (
-            <div key={activity.id || index} className="col-md-6 mb-3">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">{activity.activity_type}</h5>
-                  <p className="card-text">
-                    <strong>Duration:</strong> {activity.duration} minutes<br />
-                    <strong>Distance:</strong> {activity.distance} km<br />
-                    <strong>Calories:</strong> {activity.calories_burned}<br />
-                    <strong>Date:</strong> {new Date(activity.date).toLocaleDateString()}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))
-        )}
-      </div>
+      <h2>📊 Activities</h2>
+      {activities.length === 0 ? (
+        <div className="empty-state">
+          <p className="lead">No activities found.</p>
+          <p className="text-muted">Start tracking your workouts to see them here!</p>
+        </div>
+      ) : (
+        <div className="table-responsive">
+          <table className="table table-hover">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Duration</th>
+                <th>Distance</th>
+                <th>Calories</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {activities.map((activity, index) => (
+                <tr key={activity.id || index}>
+                  <td>
+                    <strong>{activity.activity_type}</strong>
+                  </td>
+                  <td>{activity.duration} min</td>
+                  <td>{activity.distance} km</td>
+                  <td>
+                    <span className="badge bg-success">{activity.calories_burned} cal</span>
+                  </td>
+                  <td>{new Date(activity.date).toLocaleDateString()}</td>
+                  <td>
+                    <button className="btn btn-sm btn-outline-primary me-1">View</button>
+                    <button className="btn btn-sm btn-outline-secondary">Edit</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }

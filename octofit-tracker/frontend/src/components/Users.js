@@ -31,38 +31,76 @@ function Users() {
       });
   }, []);
 
-  if (loading) return <div className="container mt-4">Loading users...</div>;
-  if (error) return <div className="container mt-4 alert alert-danger">Error: {error}</div>;
+  if (loading) return (
+    <div className="container mt-4">
+      <div className="loading-spinner">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <p className="mt-2">Loading users...</p>
+      </div>
+    </div>
+  );
+  
+  if (error) return (
+    <div className="container mt-4">
+      <div className="alert alert-danger" role="alert">
+        <h4 className="alert-heading">Error!</h4>
+        <p>{error}</p>
+      </div>
+    </div>
+  );
 
   return (
     <div className="container mt-4">
-      <h2>Users</h2>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Team</th>
-            <th>Points</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.length === 0 ? (
-            <tr>
-              <td colSpan="4" className="text-center">No users found.</td>
-            </tr>
-          ) : (
-            users.map((user, index) => (
-              <tr key={user.id || index}>
-                <td>{user.username}</td>
-                <td>{user.email}</td>
-                <td>{user.team_name || user.team || 'No team'}</td>
-                <td>{user.total_points || 0}</td>
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="mb-0">👤 Users</h2>
+        <button className="btn btn-success">
+          <i className="bi bi-person-plus me-2"></i>Add User
+        </button>
+      </div>
+      {users.length === 0 ? (
+        <div className="empty-state">
+          <p className="lead">No users found.</p>
+          <p className="text-muted">Users will appear here once they register.</p>
+        </div>
+      ) : (
+        <div className="table-responsive">
+          <table className="table table-hover">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Team</th>
+                <th>Points</th>
+                <th>Actions</th>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            </thead>
+            <tbody>
+              {users.map((user, index) => (
+                <tr key={user.id || index}>
+                  <td><strong>{user.username}</strong></td>
+                  <td>{user.email}</td>
+                  <td>
+                    {user.team_name || user.team ? (
+                      <span className="badge bg-info">{user.team_name || user.team}</span>
+                    ) : (
+                      <span className="text-muted">No team</span>
+                    )}
+                  </td>
+                  <td>
+                    <span className="badge bg-primary">{user.total_points || 0} pts</span>
+                  </td>
+                  <td>
+                    <button className="btn btn-sm btn-outline-primary me-1">View</button>
+                    <button className="btn btn-sm btn-outline-secondary">Edit</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }

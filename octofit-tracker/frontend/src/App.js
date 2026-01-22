@@ -11,7 +11,10 @@ function App() {
     <div className="App">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">OctoFit Tracker</Link>
+          <Link className="navbar-brand" to="/">
+            <img src="/octofitapp-small.png" alt="OctoFit Logo" className="navbar-logo" />
+            OctoFit Tracker
+          </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -40,8 +43,39 @@ function App() {
       <Routes>
         <Route path="/" element={
           <div className="container mt-4">
-            <h1>Welcome to OctoFit Tracker</h1>
-            <p>Track your fitness activities, compete with your team, and achieve your goals!</p>
+            <div className="home-hero">
+              <h1 className="display-4 mb-3">Welcome to OctoFit Tracker</h1>
+              <p className="lead">Track your fitness activities, compete with your team, and achieve your goals!</p>
+            </div>
+            <div className="row mt-4">
+              <div className="col-md-4 mb-3">
+                <div className="card text-center">
+                  <div className="card-body">
+                    <h5 className="card-title">📊 Track Activities</h5>
+                    <p className="card-text">Log your workouts and monitor your progress over time.</p>
+                    <Link to="/activities" className="btn btn-primary">View Activities</Link>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-4 mb-3">
+                <div className="card text-center">
+                  <div className="card-body">
+                    <h5 className="card-title">🏆 Leaderboard</h5>
+                    <p className="card-text">Compete with others and see where you rank.</p>
+                    <Link to="/leaderboard" className="btn btn-success">View Leaderboard</Link>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-4 mb-3">
+                <div className="card text-center">
+                  <div className="card-body">
+                    <h5 className="card-title">💪 Workouts</h5>
+                    <p className="card-text">Get personalized workout suggestions tailored to you.</p>
+                    <Link to="/workouts" className="btn btn-info">View Workouts</Link>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         } />
         <Route path="/activities" element={<Activities />} />
