@@ -4,13 +4,21 @@ from .models import User, Team, Activity, Leaderboard, Workout
 
 class UserSerializer(serializers.ModelSerializer):
     id = serializers.SerializerMethodField()
+    profile = serializers.SerializerMethodField()
     
     class Meta:
         model = User
-        fields = ['id', 'name', 'email', 'team_id', 'created_at']
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'profile', 'team_id', 'created_at']
     
     def get_id(self, obj):
         return str(obj._id)
+    
+    def get_profile(self, obj):
+        return {
+            'age': obj.age,
+            'weight': obj.weight,
+            'height': obj.height
+        }
 
 
 class TeamSerializer(serializers.ModelSerializer):

@@ -1,38 +1,395 @@
+/* OctoFit Tracker Custom Styles */
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed;
+}
+
+/* Navigation styling */
+.navbar {
+  box-shadow: 0 4px 8px rgba(0,0,0,.2);
+  background: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%) !important;
+  margin-bottom: 0;
+  padding: 0.75rem 1rem;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #fff !important;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #667eea !important;
+  transform: scale(1.05);
+}
+
+.navbar-brand img {
+  filter: brightness(1.1);
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+  transform: rotate(5deg) scale(1.1);
+}
+
+.nav-link {
+  color: #e0e0e0 !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.nav-link:hover {
+  color: #fff !important;
+  background-color: rgba(102, 126, 234, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Container styling - only for content containers, not navbar */
+.App > .container-fluid {
+  padding: 0;
+  background: transparent;
+  margin: 0;
+}
+
+.App > .container-fluid .container {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 16px rgba(0,0,0,.2);
+}
+
+/* Table enhancements */
+.table {
+  margin-bottom: 0;
+}
+
+.table thead th {
+  border-top: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.table-hover tbody tr {
+  transition: all 0.3s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.table-hover tbody tr:hover {
+  background-color: rgba(102, 126, 234, 0.15);
+  cursor: pointer;
+  transform: scale(1.01);
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(102, 126, 234, 0.05);
+}
+
+/* Button styling */
+.btn {
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1.5rem;
+  border: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,.2);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #5568d3 0%, #65408b 100%);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  border: none;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #0e8070 0%, #2dd46a 100%);
+}
+
+.btn-info {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  border: none;
+  color: white;
+}
+
+.btn-info:hover {
+  background: linear-gradient(135deg, #2980b9 0%, #21618c 100%);
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%);
+  border: none;
+  color: #333;
+}
+
+.btn-warning:hover {
+  background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+  border: none;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #7f8c8d 0%, #6c7a7b 100%);
+}
+
+.btn-outline-primary {
+  color: #667eea;
+  border: 2px solid #667eea;
+  background: transparent;
+}
+
+.btn-outline-primary:hover {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.btn-outline-secondary {
+  color: #6c757d;
+  border: 2px solid #6c757d;
+  background: transparent;
+}
+
+.btn-outline-secondary:hover {
+  background: #6c757d;
+  color: white;
+  border-color: #6c757d;
+}
+
+.btn-outline-info {
+  color: #3498db;
+  border: 2px solid #3498db;
+  background: transparent;
+}
+
+.btn-outline-info:hover {
+  background: #3498db;
+  color: white;
+  border-color: #3498db;
+}
+
+.btn-outline-success {
+  color: #11998e;
+  border: 2px solid #11998e;
+  background: transparent;
+}
+
+.btn-outline-success:hover {
+  background: #11998e;
+  color: white;
+  border-color: #11998e;
+}
+
+/* Badge styling */
+.badge {
+  padding: 0.5em 0.75em;
+  font-weight: 600;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.bg-warning {
+  background: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%) !important;
+  color: #333 !important;
+}
+
+.bg-secondary {
+  background: linear-gradient(135deg, #95a5a6 0%, #bdc3c7 100%) !important;
+}
+
+.bg-danger {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%) !important;
+}
+
+.bg-success {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+}
+
+.bg-info {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%) !important;
+}
+
+/* Card styling (for home page) */
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,.15);
+  transition: all 0.3s ease;
+  background: white;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,.2);
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.card-title {
+  color: #667eea;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.card-text {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Alert styling */
+.alert {
+  border-radius: 10px;
+  border: none;
+  font-weight: 500;
+}
+
+.alert-info {
+  background: linear-gradient(135deg, #d6eaf8 0%, #aed6f1 100%);
+  color: #1f618d;
+}
+
+/* Heading styling */
+h1 {
+  color: #2c3e50;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  color: #667eea;
+  font-weight: 700;
+}
+
+h3, h4, h5, h6 {
+  color: #34495e;
+  font-weight: 600;
+}
+
+/* Lead text */
+.lead {
+  color: #555;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+/* Loading and error states */
+.text-danger {
+  font-weight: 600;
+  color: #e74c3c !important;
+}
+
+.text-muted {
+  color: #7f8c8d !important;
+}
+
+/* Table text colors */
+.table tbody td strong {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.table tbody td {
+  color: #34495e;
+  vertical-align: middle;
+  padding: 1rem 0.75rem;
+}
+
+/* Loading animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    opacity: 0.5;
   }
+}
+
+.container p:contains('Loading') {
+  animation: pulse 1.5s ease-in-out infinite;
+  color: #667eea;
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container,
+  .container-fluid {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .btn-sm {
+    font-size: 0.75rem;
+  }
+  
+  .navbar-brand span {
+    display: none;
+  }
+}
+
+/* Page header styling */
+.d-flex.justify-content-between.align-items-center {
+  padding-bottom: 1rem;
+  border-bottom: 3px solid;
+  border-image: linear-gradient(90deg, #667eea 0%, #764ba2 100%) 1;
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #5568d3 0%, #65408b 100%);
+}
+
+/* Add color to links */
+a {
+  color: #667eea;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #764ba2;
 }

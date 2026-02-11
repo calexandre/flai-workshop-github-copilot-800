@@ -35,23 +35,40 @@ function Activities() {
 
   return (
     <div className="container mt-4">
-      <h2>Activities</h2>
-      <div className="row">
-        {activities.map(activity => (
-          <div key={activity.id} className="col-md-6 mb-3">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">{activity.activity_type}</h5>
-                <p className="card-text">Duration: {activity.duration} minutes</p>
-                <p className="card-text">Calories: {activity.calories}</p>
-                <p className="card-text">Distance: {activity.distance} km</p>
-                <p className="card-text text-muted">Date: {new Date(activity.date).toLocaleDateString()}</p>
-              </div>
-            </div>
-          </div>
-        ))}
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="mb-0">Activities</h2>
+        <button className="btn btn-primary">Add Activity</button>
       </div>
-      {activities.length === 0 && <p>No activities found.</p>}
+      <div className="table-responsive">
+        <table className="table table-striped table-hover">
+          <thead className="table-dark">
+            <tr>
+              <th>Activity Type</th>
+              <th>Duration (min)</th>
+              <th>Calories</th>
+              <th>Distance (km)</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {activities.map(activity => (
+              <tr key={activity.id}>
+                <td><strong>{activity.activity_type}</strong></td>
+                <td>{activity.duration}</td>
+                <td>{activity.calories}</td>
+                <td>{activity.distance}</td>
+                <td>{new Date(activity.date).toLocaleDateString()}</td>
+                <td>
+                  <button className="btn btn-sm btn-outline-primary me-1">View</button>
+                  <button className="btn btn-sm btn-outline-secondary">Edit</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {activities.length === 0 && <div className="alert alert-info">No activities found.</div>}
     </div>
   );
 }

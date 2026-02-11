@@ -35,27 +35,46 @@ function Workouts() {
 
   return (
     <div className="container mt-4">
-      <h2>Workouts</h2>
-      <div className="row">
-        {workouts.map(workout => (
-          <div key={workout.id} className="col-md-6 mb-3">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">{workout.name}</h5>
-                <p className="card-text">{workout.description}</p>
-                {workout.difficulty && (
-                  <span className={`badge bg-${workout.difficulty === 'Easy' ? 'success' : workout.difficulty === 'Medium' ? 'warning' : 'danger'}`}>
-                    {workout.difficulty}
-                  </span>
-                )}
-                {workout.duration && <p className="card-text mt-2">Duration: {workout.duration} minutes</p>}
-                {workout.category && <p className="card-text">Category: {workout.category}</p>}
-              </div>
-            </div>
-          </div>
-        ))}
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="mb-0">Workouts</h2>
+        <button className="btn btn-primary">Create Workout</button>
       </div>
-      {workouts.length === 0 && <p>No workouts found.</p>}
+      <div className="table-responsive">
+        <table className="table table-striped table-hover">
+          <thead className="table-dark">
+            <tr>
+              <th>Workout Name</th>
+              <th>Description</th>
+              <th>Difficulty</th>
+              <th>Duration (min)</th>
+              <th>Category</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {workouts.map(workout => (
+              <tr key={workout.id}>
+                <td><strong>{workout.name}</strong></td>
+                <td>{workout.description}</td>
+                <td>
+                  {workout.difficulty && (
+                    <span className={`badge bg-${workout.difficulty === 'Easy' ? 'success' : workout.difficulty === 'Medium' ? 'warning text-dark' : 'danger'}`}>
+                      {workout.difficulty}
+                    </span>
+                  )}
+                </td>
+                <td>{workout.duration || '-'}</td>
+                <td>{workout.category || '-'}</td>
+                <td>
+                  <button className="btn btn-sm btn-outline-primary me-1">View</button>
+                  <button className="btn btn-sm btn-outline-success">Start</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {workouts.length === 0 && <div className="alert alert-info">No workouts found.</div>}
     </div>
   );
 }

@@ -35,23 +35,40 @@ function Teams() {
 
   return (
     <div className="container mt-4">
-      <h2>Teams</h2>
-      <div className="row">
-        {teams.map(team => (
-          <div key={team.id} className="col-md-4 mb-3">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">{team.name}</h5>
-                <p className="card-text">{team.description}</p>
-                <p className="card-text">
-                  <small className="text-muted">Members: {team.members_count || team.members?.length || 0}</small>
-                </p>
-              </div>
-            </div>
-          </div>
-        ))}
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="mb-0">Teams</h2>
+        <button className="btn btn-primary">Create Team</button>
       </div>
-      {teams.length === 0 && <p>No teams found.</p>}
+      <div className="table-responsive">
+        <table className="table table-striped table-hover">
+          <thead className="table-dark">
+            <tr>
+              <th>Team Name</th>
+              <th>Description</th>
+              <th>Members</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {teams.map(team => (
+              <tr key={team.id}>
+                <td><strong>{team.name}</strong></td>
+                <td>{team.description}</td>
+                <td>
+                  <span className="badge bg-info">
+                    {team.members_count || team.members?.length || 0} members
+                  </span>
+                </td>
+                <td>
+                  <button className="btn btn-sm btn-outline-primary me-1">View</button>
+                  <button className="btn btn-sm btn-outline-success">Join</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {teams.length === 0 && <div className="alert alert-info">No teams found.</div>}
     </div>
   );
 }

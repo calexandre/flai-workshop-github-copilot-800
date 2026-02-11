@@ -35,28 +35,42 @@ function Users() {
 
   return (
     <div className="container mt-4">
-      <h2>Users</h2>
-      <div className="row">
-        {users.map(user => (
-          <div key={user.id} className="col-md-6 mb-3">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">{user.username}</h5>
-                <p className="card-text">Email: {user.email}</p>
-                {user.first_name && <p className="card-text">Name: {user.first_name} {user.last_name}</p>}
-                {user.profile && (
-                  <>
-                    {user.profile.age && <p className="card-text">Age: {user.profile.age}</p>}
-                    {user.profile.weight && <p className="card-text">Weight: {user.profile.weight} kg</p>}
-                    {user.profile.height && <p className="card-text">Height: {user.profile.height} cm</p>}
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="mb-0">Users</h2>
+        <button className="btn btn-primary">Add User</button>
       </div>
-      {users.length === 0 && <p>No users found.</p>}
+      <div className="table-responsive">
+        <table className="table table-striped table-hover">
+          <thead className="table-dark">
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Weight (kg)</th>
+              <th>Height (cm)</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map(user => (
+              <tr key={user.id}>
+                <td><strong>{user.username}</strong></td>
+                <td>{user.email}</td>
+                <td>{user.first_name ? `${user.first_name} ${user.last_name}` : '-'}</td>
+                <td>{user.profile?.age || '-'}</td>
+                <td>{user.profile?.weight || '-'}</td>
+                <td>{user.profile?.height || '-'}</td>
+                <td>
+                  <button className="btn btn-sm btn-outline-primary me-1">View</button>
+                  <button className="btn btn-sm btn-outline-secondary">Edit</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {users.length === 0 && <div className="alert alert-info">No users found.</div>}
     </div>
   );
 }

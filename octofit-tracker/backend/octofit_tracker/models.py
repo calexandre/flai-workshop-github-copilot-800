@@ -3,8 +3,13 @@ from djongo import models
 
 class User(models.Model):
     _id = models.ObjectIdField()
-    name = models.CharField(max_length=100)
+    username = models.CharField(max_length=100, unique=True)
     email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=100, blank=True)
+    last_name = models.CharField(max_length=100, blank=True)
+    age = models.IntegerField(blank=True, null=True)
+    weight = models.FloatField(blank=True, null=True)  # in kg
+    height = models.FloatField(blank=True, null=True)  # in cm
     team_id = models.CharField(max_length=100, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
@@ -12,7 +17,7 @@ class User(models.Model):
         db_table = 'users'
     
     def __str__(self):
-        return self.name
+        return self.username
 
 
 class Team(models.Model):

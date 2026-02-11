@@ -37,63 +37,113 @@ class Command(BaseCommand):
         
         # Marvel superheroes
         iron_man = User.objects.create(
-            name='Tony Stark',
+            username='ironman',
             email='ironman@marvel.com',
+            first_name='Tony',
+            last_name='Stark',
+            age=45,
+            weight=85.5,
+            height=185,
             team_id=str(team_marvel._id)
         )
         
         captain_america = User.objects.create(
-            name='Steve Rogers',
+            username='captainamerica',
             email='captainamerica@marvel.com',
+            first_name='Steve',
+            last_name='Rogers',
+            age=105,
+            weight=90.0,
+            height=188,
             team_id=str(team_marvel._id)
         )
         
         black_widow = User.objects.create(
-            name='Natasha Romanoff',
+            username='blackwidow',
             email='blackwidow@marvel.com',
+            first_name='Natasha',
+            last_name='Romanoff',
+            age=35,
+            weight=59.0,
+            height=170,
             team_id=str(team_marvel._id)
         )
         
         thor = User.objects.create(
-            name='Thor Odinson',
+            username='thor',
             email='thor@marvel.com',
+            first_name='Thor',
+            last_name='Odinson',
+            age=1500,
+            weight=290.0,
+            height=198,
             team_id=str(team_marvel._id)
         )
         
         hulk = User.objects.create(
-            name='Bruce Banner',
+            username='hulk',
             email='hulk@marvel.com',
+            first_name='Bruce',
+            last_name='Banner',
+            age=49,
+            weight=128.0,
+            height=175,
             team_id=str(team_marvel._id)
         )
         
         # DC superheroes
         batman = User.objects.create(
-            name='Bruce Wayne',
+            username='batman',
             email='batman@dc.com',
+            first_name='Bruce',
+            last_name='Wayne',
+            age=42,
+            weight=95.0,
+            height=188,
             team_id=str(team_dc._id)
         )
         
         superman = User.objects.create(
-            name='Clark Kent',
+            username='superman',
             email='superman@dc.com',
+            first_name='Clark',
+            last_name='Kent',
+            age=35,
+            weight=107.0,
+            height=191,
             team_id=str(team_dc._id)
         )
         
         wonder_woman = User.objects.create(
-            name='Diana Prince',
+            username='wonderwoman',
             email='wonderwoman@dc.com',
+            first_name='Diana',
+            last_name='Prince',
+            age=5000,
+            weight=75.0,
+            height=183,
             team_id=str(team_dc._id)
         )
         
         flash = User.objects.create(
-            name='Barry Allen',
+            username='flash',
             email='flash@dc.com',
+            first_name='Barry',
+            last_name='Allen',
+            age=29,
+            weight=79.0,
+            height=183,
             team_id=str(team_dc._id)
         )
         
         aquaman = User.objects.create(
-            name='Arthur Curry',
+            username='aquaman',
             email='aquaman@dc.com',
+            first_name='Arthur',
+            last_name='Curry',
+            age=38,
+            weight=100.0,
+            height=193,
             team_id=str(team_dc._id)
         )
         
@@ -159,7 +209,7 @@ class Command(BaseCommand):
                 duration=duration,
                 calories_burned=calories,
                 date=base_date + timedelta(days=i % 30),
-                notes=f'{activity_type} session for {user.name}'
+                notes=f'{activity_type} session for {user.first_name} {user.last_name}'
             )
         
         # Create leaderboard entries
@@ -185,7 +235,7 @@ class Command(BaseCommand):
             activity_count = Activity.objects.filter(user_id=str(user._id)).count()
             Leaderboard.objects.create(
                 user_id=str(user._id),
-                user_name=user.name,
+                user_name=f'{user.first_name} {user.last_name}',
                 team_id=str(team._id),
                 team_name=team.name,
                 total_calories=calories,
