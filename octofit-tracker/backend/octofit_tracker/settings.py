@@ -35,6 +35,10 @@ CSRF_TRUSTED_ORIGINS = []
 if os.environ.get('CODESPACE_NAME'):
     CSRF_TRUSTED_ORIGINS.append(f"https://{os.environ.get('CODESPACE_NAME')}-8000.app.github.dev")
 
+# Proxy Settings for Codespaces - Ensure correct URL generation
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # Application definition
 
 INSTALLED_APPS = [
